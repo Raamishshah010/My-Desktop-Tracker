@@ -1,0 +1,32 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react';
+
+import Logo from './dojo-logo.png';
+
+const Navbar = () => {
+    return (
+        
+            <nav>
+                <Image
+                src={Logo} 
+                alt='My Desk Logo'
+                width={70}
+                quality={100}
+                placeholder='blur'
+                />
+                <h5>My Dashboard</h5>
+
+                <Link href='/'>
+                    Home
+                </Link>
+
+                <Link href='/tickets'>
+                    Tickets
+                </Link>
+            </nav>
+
+    )
+}
+
+export default Navbar
