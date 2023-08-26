@@ -1,9 +1,12 @@
-
+import { notFound } from 'next/navigation'
 
 export const dynamicParams = true;
 
-
 export async function generateStaticParams() {
+
+    
+    // Set Timeout For Loading Page
+    await new Promise(resolve => setTimeout(resolve, 3000)) 
     const res = await fetch('http://localhost:4000/tickets');
 
     const tickets = await res.json();
@@ -14,6 +17,9 @@ export async function generateStaticParams() {
 }
 
 async function getTicket(id) {
+
+    // Set Timeout For Loading Page
+    await new Promise(resolve => setTimeout(resolve, 3000)) 
 
     const res = await fetch('http://localhost:4000/tickets/' + id, {
         next: {
@@ -45,7 +51,7 @@ const page = async ({ params }) => {
             </nav>
             <div className="card">
                 <h3>{ticket.title}</h3>
-                <small>Created By {ticket.user_email}</small>
+                <small>Created By <span className="hover:text-indigo-700 cursor-pointer">{ticket.user_email}</span></small>
                 <p>{ticket.body}</p>
                 <div className={`pill ${ticket.priority}`}>
                     {ticket.priority} priority
